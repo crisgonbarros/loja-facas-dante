@@ -2360,11 +2360,9 @@
     const RESUME_DELAY  = 8000;   // ms para retomar após interação manual
 
     function goTo(idx) {
-      current = (idx + total) % total;
+      current = ((idx % total) + total) % total;
       track.style.transform = 'translateX(-' + (current * 100) + '%)';
       dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
-      prevBtn.disabled = false;
-      nextBtn.disabled = false;
     }
 
     function startAuto() {
