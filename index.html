@@ -165,7 +165,7 @@
 
     /* HERO */
     .hero {
-      min-height: 80svh;
+      min-height: 65svh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center; padding: 5rem 2rem 3rem;
@@ -188,36 +188,16 @@
       0%   { opacity: 0; transform: scale(0.88); }
       100% { opacity: 1; transform: scale(1); }
     }
-    @keyframes logoShimmer {
-      0%   { background-position: -100% center; }
-      30%  { background-position: 200% center; }
-      100% { background-position: 200% center; }
-    }
     .hero-logo {
       width: 180px; max-width: 60vw;
       display: block;
       animation: logoEntrance 0.9s cubic-bezier(0.22,1,0.36,1) both;
-      border-radius: 50%;
     }
     .hero-logo-wrap {
       display: block;
       width: 180px;
       max-width: 60vw;
       margin: 0 auto 1.25rem;
-      position: relative;
-      border-radius: 50%;
-      overflow: hidden;
-    }
-    .hero-logo-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(105deg, transparent 25%, rgba(255,220,120,0.6) 50%, transparent 75%);
-      background-size: 200% 100%;
-      background-repeat: no-repeat;
-      background-position: -100% center;
-      pointer-events: none;
-      animation: logoShimmer 8s ease-in-out 1.2s infinite;
     }
     .hero-tagline {
       font-family: 'Playfair Display', serif;
@@ -232,11 +212,7 @@
       letter-spacing: 0.02em; color: var(--white); margin-bottom: 1rem;
     }
     .hero-headline span { color: var(--gold); }
-    .hero-sub {
-      font-size: clamp(0.85rem, 1.8vw, 0.95rem);
-      color: var(--white-dim); max-width: 480px;
-      margin: 0 auto 2.5rem; line-height: 1.75;
-    }
+    .hero-headline { margin-bottom: 2rem; }
     .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -659,7 +635,6 @@
       .hero-logo-wrap { width: 140px; margin: 0 auto 1rem; }
       .hero-tagline { margin-bottom: 1rem; }
       .hero-headline { margin-bottom: 0.75rem; }
-      .hero-sub { margin-bottom: 1.75rem; }
       .card-body { padding: 0.75rem; }
       .card-tag { font-size: 0.6rem; }
       .card-name { font-size: 0.9rem; margin-bottom: 0.2rem; }
@@ -721,7 +696,6 @@
     <div class="hero-logo-wrap"><img src="https://raw.githubusercontent.com/crisgonbarros/loja-facas-dante/main/img/logo.png" alt="Facas Dante" class="hero-logo" width="180" height="180" fetchpriority="high" /></div>
     <p class="hero-tagline">Presente nos melhores churrascos.</p>
     <h1 class="hero-headline">Cada peça é <span>única.</span><br />Cada lâmina conta uma história.</h1>
-    <p class="hero-sub">Cutelaria artesanal de alto padrão fundada por Dante Roberto Brescianini, referência em cutelaria com mais de 25 anos de experiência. Entregamos em todo o Brasil.</p>
     <div class="hero-actions">
       <a href="#catalogo" class="btn-primary">Ver Catálogo</a>
       <a href="https://wa.me/5567999489905?text=Olá%20Dante!%20Vim%20pelo%20site%20e%20gostaria%20de%20conhecer%20as%20facas%20disponíveis." class="btn-secondary" target="_blank">
