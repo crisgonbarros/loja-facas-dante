@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Facas Dante | Loja Online | v2.14 -->
+<!-- Facas Dante | Loja Online | v2.16 -->
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -643,37 +643,32 @@
     .footer {
       background: var(--carbon-2);
       border-top: 1px solid rgba(201,168,76,0.15);
-      padding: 3rem 2rem 2rem;
+      padding: 2rem 2rem 1.5rem;
     }
     .footer-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr 1fr;
-      gap: 3rem; margin-bottom: 2.5rem;
+      max-width: 700px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; margin-bottom: 1.5rem;
     }
-    .footer-brand img { height: 48px; width: auto; margin-bottom: 1rem; }
-    .footer-brand p { font-size: 0.8rem; color: var(--smoke); line-height: 1.7; max-width: 240px; }
     .footer-col h4 {
-      font-size: 0.72rem; font-weight: 600;
+      font-size: 0.65rem; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--gold-dim); margin-bottom: 1rem;
+      color: var(--gold-dim); margin-bottom: 0.65rem;
     }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-col ul li a { font-size: 0.82rem; color: var(--silver); transition: color var(--transition); }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+    .footer-col ul li a { font-size: 0.75rem; color: var(--silver); transition: color var(--transition); }
     .footer-col ul li a:hover { color: var(--gold); }
-    .footer-social { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
-    .footer-social a {
-      width: 38px; height: 38px; border: 1px solid var(--ash); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--silver); transition: border-color var(--transition), color var(--transition);
+    .footer-cta {
+      max-width: 700px; margin: 0 auto 1.5rem;
+      display: flex; justify-content: center;
     }
-    .footer-social a:hover { border-color: var(--gold); color: var(--gold); }
     .footer-bottom {
-      max-width: 1100px; margin: 0 auto;
-      padding-top: 1.5rem; border-top: 1px solid var(--ash);
+      max-width: 700px; margin: 0 auto;
+      padding-top: 1rem; border-top: 1px solid var(--ash);
       display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 1rem;
+      align-items: center; flex-wrap: wrap; gap: 0.75rem;
     }
-    .footer-bottom p { font-size: 0.75rem; color: var(--smoke); }
+    .footer-bottom p { font-size: 0.7rem; color: var(--smoke); }
     .footer-bottom a { color: var(--gold-dim); transition: color var(--transition); }
     .footer-bottom a:hover { color: var(--gold); }
 
@@ -691,7 +686,8 @@
       .product-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
       .como-grid { display: none; }
       .como-carousel-wrap { display: block; max-width: 480px; margin: 0 auto; }
-      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+      .footer-cta .btn-primary { width: 100%; justify-content: center; }
       .form-row { grid-template-columns: 1fr; }
       .encomenda-inner { padding: 2rem 1.5rem; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
@@ -2118,21 +2114,6 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-brand">
-      <img loading="lazy" src="https://raw.githubusercontent.com/crisgonbarros/loja-facas-dante/main/img/logo.png" alt="Facas Dante" width="120" height="120"/>
-      <p>Cutelaria artesanal de alto padrão. Cada peça é única, fruto do trabalho artesanal à mão por Dante Roberto Brescianini com mais de 25 anos de ofício.</p>
-      <div class="footer-social">
-        <a href="https://www.instagram.com/facasdante/" target="_blank" title="Instagram">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        </a>
-        <a href="https://www.facebook.com/facasdante" target="_blank" title="Facebook">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-        <a href="https://wa.me/5567999489905" target="_blank" title="WhatsApp">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-        </a>
-      </div>
-    </div>
     <div class="footer-col">
       <h4>Catálogo</h4>
       <ul>
@@ -2147,17 +2128,16 @@
     <div class="footer-col">
       <h4>Contato</h4>
       <ul>
-        <li><a href="https://wa.me/5567999489905" target="_blank">(67) 99948-9905</a></li>
-        <li><a href="https://www.instagram.com/facasdante/" target="_blank">@facasdante</a></li>
+        <li><a href="https://www.facasdante.com.br" target="_blank">Página Principal</a></li>
         <li><a href="https://site.facasdante.com.br" target="_blank">Sobre Dante</a></li>
       </ul>
-      <div style="margin-top:1.5rem;">
-        <a href="https://wa.me/5567999489905?text=Olá%20Dante!%20Vim%20pelo%20site%20e%20gostaria%20de%20conhecer%20as%20facas%20disponíveis." class="btn-primary" target="_blank" style="font-size:0.75rem;padding:0.65rem 1.25rem;display:inline-flex;align-items:center;gap:0.4rem;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          Falar com a Equipe
-        </a>
-      </div>
     </div>
+  </div>
+  <div class="footer-cta">
+    <a href="https://wa.me/5567999489905?text=Olá%20Dante!%20Vim%20pelo%20site%20e%20gostaria%20de%20conhecer%20as%20facas%20disponíveis." class="btn-primary" target="_blank" style="font-size:0.82rem;padding:0.75rem 1.75rem;display:inline-flex;align-items:center;gap:0.5rem;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      Falar com a Equipe
+    </a>
   </div>
   <div class="footer-bottom">
     <p>© 2025 Facas Dante. Todos os direitos reservados. Uso responsável conforme legislação vigente.</p>
