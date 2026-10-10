@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Facas Dante | Loja Online | v2.13 -->
+<!-- Facas Dante | Loja Online | v2.14 -->
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -525,20 +525,20 @@
       text-align: center; padding: 1.5rem 1rem;
       opacity: 0;
     }
-    .como-step.animated { animation: stepIn 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .como-step.animated { animation: stepIn 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
     .como-step:nth-child(1) { animation-delay: 0s; }
-    .como-step:nth-child(3) { animation-delay: 0.15s; }
-    .como-step:nth-child(5) { animation-delay: 0.3s; }
-    .como-step:nth-child(7) { animation-delay: 0.45s; }
+    .como-step:nth-child(3) { animation-delay: 0.4s; }
+    .como-step:nth-child(5) { animation-delay: 0.8s; }
+    .como-step:nth-child(7) { animation-delay: 1.2s; }
     .como-arrow {
       display: flex; align-items: center; justify-content: center;
       padding-top: 2.5rem; color: var(--gold-dim);
       opacity: 0;
     }
-    .como-arrow.animated { animation: arrowIn 0.4s ease forwards; }
-    .como-arrow:nth-child(2) { animation-delay: 0.1s; }
-    .como-arrow:nth-child(4) { animation-delay: 0.25s; }
-    .como-arrow:nth-child(6) { animation-delay: 0.4s; }
+    .como-arrow.animated { animation: arrowIn 0.5s ease forwards; }
+    .como-arrow:nth-child(2) { animation-delay: 0.25s; }
+    .como-arrow:nth-child(4) { animation-delay: 0.65s; }
+    .como-arrow:nth-child(6) { animation-delay: 1.05s; }
     .como-arrow svg { flex-shrink: 0; }
     .como-step-icon {
       width: 56px; height: 56px;
@@ -714,8 +714,9 @@
       .card-detail p, .card-detail ul li { font-size: 0.72rem; }
     }
     @media (max-width: 480px) {
-      .hero-actions { flex-direction: column; align-items: center; }
-
+      .hero-actions { flex-direction: column; align-items: stretch; gap: 0.65rem; }
+      .hero-actions .btn-primary,
+      .hero-actions .btn-secondary { width: 100%; justify-content: center; padding: 0.75rem 1rem; font-size: 0.78rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -2118,7 +2119,7 @@
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img loading="lazy" src="https://raw.githubusercontent.com/crisgonbarros/loja-facas-dante/main/img/logo.png" alt="Facas Dante"  width="400" height="400"/>
+      <img loading="lazy" src="https://raw.githubusercontent.com/crisgonbarros/loja-facas-dante/main/img/logo.png" alt="Facas Dante" width="120" height="120"/>
       <p>Cutelaria artesanal de alto padrão. Cada peça é única, fruto do trabalho artesanal à mão por Dante Roberto Brescianini com mais de 25 anos de ofício.</p>
       <div class="footer-social">
         <a href="https://www.instagram.com/facasdante/" target="_blank" title="Instagram">
