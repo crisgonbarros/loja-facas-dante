@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Facas Dante | Loja Online | v2.11 -->
+<!-- Facas Dante | Loja Online | v2.13 -->
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -122,6 +122,12 @@
       border-bottom: 1px solid rgba(201,168,76,0.15);
     }
     .nav-logo img { height: 36px; width: auto; }
+    .nav-home {
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold-dim); transition: color var(--transition);
+      flex-shrink: 0;
+    }
+    .nav-home:hover { color: var(--gold); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       font-size: 0.78rem; font-weight: 500;
@@ -500,20 +506,40 @@
       border-top: 1px solid rgba(201,168,76,0.1);
       border-bottom: 1px solid rgba(201,168,76,0.1);
     }
+    /* Desktop grid */
     .como-grid {
       display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
       align-items: start;
       gap: 0; max-width: 1100px; margin: 0 auto;
     }
-    .como-arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 2.5rem;
-      color: var(--gold-dim);
+    /* Desktop step animation */
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
+    @keyframes arrowIn {
+      from { opacity: 0; transform: translateX(-10px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .como-step {
+      text-align: center; padding: 1.5rem 1rem;
+      opacity: 0;
+    }
+    .como-step.animated { animation: stepIn 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .como-step:nth-child(1) { animation-delay: 0s; }
+    .como-step:nth-child(3) { animation-delay: 0.15s; }
+    .como-step:nth-child(5) { animation-delay: 0.3s; }
+    .como-step:nth-child(7) { animation-delay: 0.45s; }
+    .como-arrow {
+      display: flex; align-items: center; justify-content: center;
+      padding-top: 2.5rem; color: var(--gold-dim);
+      opacity: 0;
+    }
+    .como-arrow.animated { animation: arrowIn 0.4s ease forwards; }
+    .como-arrow:nth-child(2) { animation-delay: 0.1s; }
+    .como-arrow:nth-child(4) { animation-delay: 0.25s; }
+    .como-arrow:nth-child(6) { animation-delay: 0.4s; }
     .como-arrow svg { flex-shrink: 0; }
-    .como-step { text-align: center; padding: 1.5rem 1rem; }
     .como-step-icon {
       width: 56px; height: 56px;
       background: rgba(201,168,76,0.08);
@@ -521,6 +547,11 @@
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 1rem; color: var(--gold);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .como-step.animated .como-step-icon {
+      background: rgba(201,168,76,0.14);
+      border-color: rgba(201,168,76,0.4);
     }
     .como-step-num {
       font-family: 'Cinzel', serif; font-size: 0.65rem;
@@ -532,6 +563,41 @@
       color: var(--white); margin-bottom: 0.5rem;
     }
     .como-step p { font-size: 0.8rem; color: var(--silver); line-height: 1.65; }
+    /* Mobile carrossel */
+    .como-carousel-wrap { display: none; }
+    .como-carousel-viewport {
+      overflow: hidden; position: relative;
+    }
+    .como-carousel-track {
+      display: flex; transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+      will-change: transform;
+    }
+    .como-carousel-track .como-step {
+      flex: 0 0 100%; opacity: 1; animation: none;
+      padding: 1.5rem 2rem 2rem;
+    }
+    .como-carousel-nav {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem; margin-top: 1.25rem;
+    }
+    .como-nav-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.06);
+      color: var(--gold); display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .como-nav-btn:hover { background: rgba(201,168,76,0.15); border-color: rgba(201,168,76,0.5); }
+    .como-nav-btn:disabled { opacity: 0.3; cursor: default; }
+    .como-dots {
+      display: flex; gap: 6px; align-items: center;
+    }
+    .como-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--ash); transition: background 0.25s, transform 0.25s;
+    }
+    .como-dot.active { background: var(--gold); transform: scale(1.3); }
 
     /* ENCOMENDA */
     .encomenda-section { background: var(--carbon); padding: 5rem 2rem; }
@@ -614,8 +680,8 @@
     /* RESPONSIVE */
     @media (max-width: 1100px) {
       .product-grid { grid-template-columns: repeat(3, 1fr); }
-      .como-grid { grid-template-columns: repeat(2, 1fr); }
-      .como-arrow { display: none; }
+      .como-grid { display: none; }
+      .como-carousel-wrap { display: block; max-width: 600px; margin: 0 auto; }
       .cred-bar-inner { display: none; }
       .cred-carousel { display: flex; align-items: center; justify-content: center; min-height: 36px; }
     }
@@ -623,8 +689,8 @@
       .nav-links, .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
       .product-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-      .como-grid { grid-template-columns: 1fr; }
-      .como-arrow { display: none; }
+      .como-grid { display: none; }
+      .como-carousel-wrap { display: block; max-width: 480px; margin: 0 auto; }
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
       .form-row { grid-template-columns: 1fr; }
       .encomenda-inner { padding: 2rem 1.5rem; }
@@ -660,6 +726,9 @@
 
 <!-- NAV -->
 <nav class="nav">
+  <a href="https://www.facasdante.com.br" class="nav-home" target="_blank" aria-label="Início — Facas Dante">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg>
+  </a>
   <a href="#" class="nav-logo">
     <img src="https://raw.githubusercontent.com/crisgonbarros/loja-facas-dante/main/img/logo.png" alt="Facas Dante" width="120" height="40" fetchpriority="high" />
   </a>
@@ -667,7 +736,7 @@
     <li><a href="#catalogo">Catálogo</a></li>
     <li><a href="#como-funciona">Como Funciona</a></li>
     <li><a href="#encomenda">Encomenda</a></li>
-    <li><a href="https://www.facasdante.com.br" target="_blank">Sobre Dante</a></li>
+    <li><a href="https://site.facasdante.com.br" target="_blank">Sobre Dante</a></li>
   </ul>
   <a href="https://wa.me/5567999489905?text=Olá%20Dante!%20Vim%20pelo%20site%20e%20gostaria%20de%20conhecer%20as%20facas%20disponíveis." class="nav-cta" target="_blank">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
@@ -682,7 +751,7 @@
   <a href="#catalogo" onclick="toggleMenu()">Catálogo</a>
   <a href="#como-funciona" onclick="toggleMenu()">Como Funciona</a>
   <a href="#encomenda" onclick="toggleMenu()">Encomenda Personalizada</a>
-  <a href="https://www.facasdante.com.br" target="_blank">Sobre Dante</a>
+  <a href="https://site.facasdante.com.br" target="_blank">Sobre Dante</a>
   <a href="https://wa.me/5567999489905?text=Olá%20Dante!%20Vim%20pelo%20site%20e%20gostaria%20de%20conhecer%20as%20facas%20disponíveis." target="_blank">Falar com a Equipe</a>
 </div>
 
@@ -1911,57 +1980,84 @@
     <h2 class="section-title">Como <span>Funciona</span></h2>
     <p class="section-desc">Comprar uma Facas Dante é direto, pessoal e sem complicação.</p>
   </div>
-  <div class="como-grid">
 
+  <!-- DESKTOP: grid animado -->
+  <div class="como-grid" id="comoGrid">
     <div class="como-step">
-      <div class="como-step-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      </div>
+      <div class="como-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       <p class="como-step-num">Passo 01</p>
       <h3>Escolha sua faca</h3>
       <p>Navegue pelo catálogo, veja os modelos e encontre a peça que combina com você.</p>
     </div>
-
-    <div class="como-arrow">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </div>
-
+    <div class="como-arrow"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     <div class="como-step">
-      <div class="como-step-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-      </div>
+      <div class="como-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
       <p class="como-step-num">Passo 02</p>
       <h3>Fale com a equipe</h3>
       <p>Clique em Comprar e fale direto pelo WhatsApp. A equipe apresenta as peças e tira todas as dúvidas.</p>
     </div>
-
-    <div class="como-arrow">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </div>
-
+    <div class="como-arrow"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     <div class="como-step">
-      <div class="como-step-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-      </div>
+      <div class="como-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
       <p class="como-step-num">Passo 03</p>
       <h3>Combine e pague</h3>
       <p>Acertamos os detalhes e você paga via PIX ou cartão. Simples, seguro e sem burocracia.</p>
     </div>
-
-    <div class="como-arrow">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </div>
-
+    <div class="como-arrow"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     <div class="como-step">
-      <div class="como-step-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-      </div>
+      <div class="como-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
       <p class="como-step-num">Passo 04</p>
       <h3>Receba em casa</h3>
       <p>Sua faca é embalada com cuidado e enviada pelos Correios para qualquer lugar do Brasil.</p>
     </div>
-
   </div>
+
+  <!-- MOBILE: carrossel manual com setas e arraste -->
+  <div class="como-carousel-wrap">
+    <div class="como-carousel-viewport" id="comoViewport">
+      <div class="como-carousel-track" id="comoTrack">
+        <div class="como-step">
+          <div class="como-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <p class="como-step-num">Passo 01</p>
+          <h3>Escolha sua faca</h3>
+          <p>Navegue pelo catálogo, veja os modelos e encontre a peça que combina com você.</p>
+        </div>
+        <div class="como-step">
+          <div class="como-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+          <p class="como-step-num">Passo 02</p>
+          <h3>Fale com a equipe</h3>
+          <p>Clique em Comprar e fale direto pelo WhatsApp. A equipe apresenta as peças e tira todas as dúvidas.</p>
+        </div>
+        <div class="como-step">
+          <div class="como-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <p class="como-step-num">Passo 03</p>
+          <h3>Combine e pague</h3>
+          <p>Acertamos os detalhes e você paga via PIX ou cartão. Simples, seguro e sem burocracia.</p>
+        </div>
+        <div class="como-step">
+          <div class="como-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+          <p class="como-step-num">Passo 04</p>
+          <h3>Receba em casa</h3>
+          <p>Sua faca é embalada com cuidado e enviada pelos Correios para qualquer lugar do Brasil.</p>
+        </div>
+      </div>
+    </div>
+    <div class="como-carousel-nav">
+      <button class="como-nav-btn" id="comoPrev" aria-label="Anterior">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      </button>
+      <div class="como-dots" id="comoDots">
+        <div class="como-dot active"></div>
+        <div class="como-dot"></div>
+        <div class="como-dot"></div>
+        <div class="como-dot"></div>
+      </div>
+      <button class="como-nav-btn" id="comoNext" aria-label="Próximo">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+
 </section>
 
 <!-- ENCOMENDA -->
@@ -2052,7 +2148,7 @@
       <ul>
         <li><a href="https://wa.me/5567999489905" target="_blank">(67) 99948-9905</a></li>
         <li><a href="https://www.instagram.com/facasdante/" target="_blank">@facasdante</a></li>
-        <li><a href="https://www.facasdante.com.br" target="_blank">Sobre Dante</a></li>
+        <li><a href="https://site.facasdante.com.br" target="_blank">Sobre Dante</a></li>
       </ul>
       <div style="margin-top:1.5rem;">
         <a href="https://wa.me/5567999489905?text=Olá%20Dante!%20Vim%20pelo%20site%20e%20gostaria%20de%20conhecer%20as%20facas%20disponíveis." class="btn-primary" target="_blank" style="font-size:0.75rem;padding:0.65rem 1.25rem;display:inline-flex;align-items:center;gap:0.4rem;">
@@ -2064,7 +2160,7 @@
   </div>
   <div class="footer-bottom">
     <p>© 2025 Facas Dante. Todos os direitos reservados. Uso responsável conforme legislação vigente.</p>
-    <p><a href="https://www.facasdante.com.br" target="_blank">Conheça a história do Sr. Dante &rarr;</a></p>
+    <p><a href="https://site.facasdante.com.br" target="_blank">Conheça a história do Sr. Dante &rarr;</a></p>
   </div>
 </footer>
 
@@ -2228,6 +2324,81 @@
         items[current].classList.add('active');
       }, 400);
     }, 3000);
+  })();
+
+  // Desktop: anima passos do "Como Funciona" ao entrar na viewport
+  (function() {
+    const grid = document.getElementById('comoGrid');
+    if (!grid) return;
+    const steps = grid.querySelectorAll('.como-step');
+    const arrows = grid.querySelectorAll('.como-arrow');
+    const obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          steps.forEach(function(s) { s.classList.add('animated'); });
+          arrows.forEach(function(a) { a.classList.add('animated'); });
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+    obs.observe(grid);
+  })();
+
+  // Mobile: carrossel "Como Funciona" — manual + auto-avanço 5s + arraste
+  (function() {
+    const track   = document.getElementById('comoTrack');
+    const viewport= document.getElementById('comoViewport');
+    const prevBtn = document.getElementById('comoPrev');
+    const nextBtn = document.getElementById('comoNext');
+    const dots    = document.querySelectorAll('.como-dot');
+    if (!track || !viewport) return;
+
+    const total = dots.length;
+    let current = 0;
+    let autoTimer = null;
+    const AUTO_INTERVAL = 5000;   // ms entre avanços automáticos
+    const RESUME_DELAY  = 8000;   // ms para retomar após interação manual
+
+    function goTo(idx) {
+      current = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
+    }
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(function() { goTo(current + 1); }, AUTO_INTERVAL);
+    }
+
+    function stopAuto() {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
+
+    function userInteract() {
+      stopAuto();
+      setTimeout(startAuto, RESUME_DELAY);
+    }
+
+    prevBtn.addEventListener('click', function() { goTo(current - 1); userInteract(); });
+    nextBtn.addEventListener('click', function() { goTo(current + 1); userInteract(); });
+
+    // Arraste com dedo
+    var touchStartX = 0;
+    viewport.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    viewport.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) {
+        goTo(dx < 0 ? current + 1 : current - 1);
+        userInteract();
+      }
+    }, { passive: true });
+
+    goTo(0);
+    startAuto();
   })();
 </script>
 </body>
