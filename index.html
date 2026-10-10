@@ -189,30 +189,34 @@
       100% { opacity: 1; transform: scale(1); }
     }
     @keyframes logoShimmer {
-      0%   { background-position: -300px center; }
-      30%  { background-position: 300px center; }
-      100% { background-position: 300px center; }
+      0%   { background-position: -100% center; }
+      30%  { background-position: 200% center; }
+      100% { background-position: 200% center; }
     }
     .hero-logo {
-      width: 180px; max-width: 60vw; margin: 0 auto 1.25rem;
+      width: 180px; max-width: 60vw;
+      display: block;
       animation: logoEntrance 0.9s cubic-bezier(0.22,1,0.36,1) both;
-      position: relative;
+      border-radius: 50%;
     }
     .hero-logo-wrap {
-      display: inline-block;
-      position: relative;
+      display: block;
+      width: 180px;
+      max-width: 60vw;
       margin: 0 auto 1.25rem;
+      position: relative;
+      border-radius: 50%;
+      overflow: hidden;
     }
     .hero-logo-wrap::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(105deg, transparent 30%, rgba(201,168,76,0.55) 50%, transparent 70%);
-      background-size: 300px 100%;
+      background: linear-gradient(105deg, transparent 25%, rgba(255,220,120,0.6) 50%, transparent 75%);
+      background-size: 200% 100%;
       background-repeat: no-repeat;
-      background-position: -300px center;
+      background-position: -100% center;
       pointer-events: none;
-      border-radius: 4px;
       animation: logoShimmer 8s ease-in-out 1.2s infinite;
     }
     .hero-tagline {
@@ -652,7 +656,7 @@
       /* Hero mais compacto no mobile */
       .hero { min-height: 60svh; padding: 4rem 1.5rem 2.5rem; }
       .hero-logo { width: 140px; }
-      .hero-logo-wrap { margin: 0 auto 1rem; }
+      .hero-logo-wrap { width: 140px; margin: 0 auto 1rem; }
       .hero-tagline { margin-bottom: 1rem; }
       .hero-headline { margin-bottom: 0.75rem; }
       .hero-sub { margin-bottom: 1.75rem; }
