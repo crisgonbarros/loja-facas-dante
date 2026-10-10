@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Facas Dante | Loja Online | v2.18 -->
+<!-- Facas Dante | Loja Online | v2.20 -->
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -637,7 +637,8 @@
     .form-group select option { background: var(--carbon-3); }
     .form-group textarea { resize: vertical; min-height: 120px; }
     .form-hint { font-size: 0.74rem; color: var(--smoke); line-height: 1.55; }
-    .ddi-row { display: grid; grid-template-columns: 100px 1fr; gap: 0.5rem; }
+    .ddi-row { display: grid; grid-template-columns: 100px 1fr; gap: 0.5rem; width: 100%; min-width: 0; }
+    .ddi-row select, .ddi-row input { min-width: 0; width: 100%; box-sizing: border-box; }
     .btn-encomenda {
       width: 100%; padding: 1rem; background: var(--gold); color: var(--carbon);
       font-size: 0.82rem; font-weight: 700;
@@ -2093,18 +2094,18 @@
         <label>WhatsApp / Telefone</label>
         <div class="ddi-row">
           <select id="enc-ddi">
-            <option value="+55">+55 BR</option>
-            <option value="+1">+1 US</option>
-            <option value="+54">+54 AR</option>
-            <option value="+598">+598 UY</option>
-            <option value="+595">+595 PY</option>
-            <option value="+591">+591 BO</option>
-            <option value="+56">+56 CL</option>
-            <option value="+51">+51 PE</option>
-            <option value="+49">+49 DE</option>
-            <option value="+44">+44 UK</option>
-            <option value="+351">+351 PT</option>
-            <option value="+39">+39 IT</option>
+            <option value="+55">🇧🇷 +55</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+54">🇦🇷 +54</option>
+            <option value="+598">🇺🇾 +598</option>
+            <option value="+595">🇵🇾 +595</option>
+            <option value="+591">🇧🇴 +591</option>
+            <option value="+56">🇨🇱 +56</option>
+            <option value="+51">🇵🇪 +51</option>
+            <option value="+49">🇩🇪 +49</option>
+            <option value="+44">🇬🇧 +44</option>
+            <option value="+351">🇵🇹 +351</option>
+            <option value="+39">🇮🇹 +39</option>
           </select>
           <input type="tel" id="enc-telefone" placeholder="(00) 00000-0000" required />
         </div>
